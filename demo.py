@@ -19,7 +19,7 @@ def main():
 
     # obtain audio from the microphone
     r = sr.Recognizer()
-    with sr.Microphone() as source:
+    with sr.Microphone(device_index=2) as source:
         audio = r.listen(source=source)
         print("Phrase was heard")
 
