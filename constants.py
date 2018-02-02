@@ -1,3 +1,5 @@
+import os
+
 # Path to snowboydecoder.py and the hotword .umdl or .pmdl file
 SNOWBOY_DECODER_LOCATION = os.path.join(os.getcwd(), "snowboy", "examples", "Python3")
 SNOWBOY_HOTWORD_LOCATION = os.path.join("snowboy", "resources", "snowboy.umdl")

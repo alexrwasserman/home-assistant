@@ -34,8 +34,8 @@ class Processor(object):
                 args = re.search(command[0], self.phrase, re.I).groups()
 
                 if len(args) > 0:
-                    command[1](Assistant, args)
+                    command[1](args)
                 else:
-                    command[1](Assistant)
+                    command[1]()
 
         return matched

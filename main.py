@@ -1,4 +1,5 @@
-import os, sys
+import sys
+from time import sleep
 import RPi.GPIO as GPIO
 import speech_recognition as sr
 from squid import *
@@ -26,17 +27,17 @@ def main():
         rgb.set_color(GREEN)
 
         with sr.Microphone(device_index=2) as source:
-            audio = recognizer.listen(source=source)
+            audio = recognizer.listen(source=source, timeout=5, phrase_time_limit=10)
             rgb.set_color(BLUE)
 
             processor = Processor(audio=audio)
             success = processor.run()
 
             if not success:
-                Processor.rgb.set_color(RED)
+                rgb.set_color(RED)
                 sleep(1)
 
-            Processor.rgb.set_color(OFF)
+            rgb.set_color(OFF)
 
 if __name__ == '__main__':
     main()
