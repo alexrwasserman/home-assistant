@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from main import POWER_STRIP_GPIO_LEAD
+from constants import POWER_STRIP_GPIO_LEAD
 
 class Assistant(object):
     def __init__(self):
