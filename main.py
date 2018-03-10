@@ -27,13 +27,14 @@ def main():
         rgb.set_color(GREEN)
 
         with sr.Microphone(device_index=2) as source:
-            audio = recognizer.listen(source=source, timeout=5, phrase_time_limit=10)
+            audio = recognizer.listen(source=source, timeout=5, phrase_time_limit=2)
             rgb.set_color(BLUE)
 
             processor = Processor(audio=audio)
-            success = processor.run()
 
-            if not success:
+            try:
+                processor.run()
+            except:
                 rgb.set_color(RED)
                 sleep(1)
 

@@ -11,23 +11,13 @@ class Processor(object):
         self.phrase = ""
 
     def run(self):
-        success = self.recognize_phrase()
-        if success:
-            success = self.execute_command()
-
-        return success
+        self.recognize_phrase()
+        self.execute_command()
 
     def recognize_phrase(self):
-        try:
-            self.phrase = Processor.recognizer.recognize_google_cloud(self.audio)
-            understood = True
-        except:
-            understood = False
-
-        return understood
+        self.phrase = Processor.recognizer.recognize_google_cloud(self.audio)
 
     def execute_command(self):
-        matched = False
         for command in Assistant.commands():
             if re.search(command[0], self.phrase, re.I):
                 matched = True
@@ -38,4 +28,6 @@ class Processor(object):
                 else:
                     command[1]()
 
-        return matched
+                return
+
+        raise ValueError("Unknown command was heard")
